@@ -16,6 +16,8 @@ services:
             - driver: nvidia
               count: all  
               capabilities: [gpu,video,compute,graphics,utility,compat32,display]
+    volumes:
+      - ~/ollama-compose/ollama:/root/.ollama
     networks:
       ollama:
         ipv4_address: 172.28.0.2
