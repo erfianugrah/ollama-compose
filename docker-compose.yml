@@ -6,6 +6,8 @@ services:
     hostname: ollama 
     container_name: ollama 
     restart: unless-stopped
+    ports:
+      - 11434:11434
     deploy:
       resources:
       #   limits:
