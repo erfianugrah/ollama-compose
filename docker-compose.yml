@@ -6,10 +6,10 @@ services:
     hostname: ollama 
     container_name: ollama 
     restart: unless-stopped
-    expose:
-      - 11434
-    # ports:
-    #   - 11434:11434
+    # expose:
+    #   - 11434
+    ports:
+      - 11434:11434
     deploy:
       resources:
       #   limits:
@@ -21,7 +21,7 @@ services:
               count: all  
               capabilities: [gpu,video,compute,graphics,utility,compat32,display]
     volumes:
-      - /mnt/user/data/ollama:/root/.ollama
+      - ~/ollama-compose/ollama:/root/.ollama
     networks:
       ollama:
         ipv4_address: 172.28.0.2
