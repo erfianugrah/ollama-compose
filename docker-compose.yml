@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  ollama:
+    image: ollama/ollama:0.1.31
+    hostname: ollama 
+    container_name: ollama 
+    restart: unless-stopped
+    deploy:
+      resources:
+      #   limits:
+      #     cpus: '6'
+      #     memory: 2048M
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all  
+              capabilities: [gpu,video,compute,graphics,utility,compat32,display]
+    networks:
+      ollama:
+        ipv4_address: 172.28.0.2
+
+networks:
+  ollama:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/17
