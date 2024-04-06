@@ -10,6 +10,6 @@ sudo apt-get install -y nvidia-container-toolkit
 # Exec into docker and run model:
 
 ```bash
-docker exec -it ollama ollama run dolphin-mistral:latest
+docker exec -it ollama ollama run dolphin-mixtral:latest
 ```
 
