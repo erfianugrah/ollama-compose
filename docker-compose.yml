@@ -43,24 +43,6 @@ services:
       ollama:
         ipv4_address: 172.28.0.3
 
-  # caddy:
-  #   image: erfianugrah/caddy-cfdns:v1.3.5-2.7.6
-  #   hostname: caddy
-  #   container_name: caddy
-  #   restart: unless-stopped
-  #   network_mode: host
-  #   deploy:
-  #     resources:
-  #       limits:
-  #         cpus: '8'
-  #         memory: 1024M
-  #   volumes:
-  #     - ~/ollama-compose/caddy/Caddyfile:/etc/caddy/Caddyfile
-  #     - ~/ollama-compose/caddy/site:/srv
-  #     - ~/ollama-compose/caddy/data:/data
-  #     - ~/ollama-compose/caddy/config:/config
-  #     - ~/ollama-compose/caddy/log:/var/log
-
 networks:
   ollama:
     driver: bridge
