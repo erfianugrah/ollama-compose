@@ -26,6 +26,41 @@ services:
       ollama:
         ipv4_address: 172.28.0.2
 
+  open-webui:
+    image: ghcr.io/open-webui/open-webui
+    hostname: open_webui
+    container_name: open_webui
+    restart: unless-stopped
+    environment:
+      - OLLAMA_BASE_URL=http://172.28.0.2:11434
+    # expose:
+    #   - 8080
+    ports:
+      - 3000:8080
+    volumes:
+      - ~/ollama-compose/webui:/app/backend/data
+    networks:
+      ollama:
+        ipv4_address: 172.28.0.3
+
+  # caddy:
+  #   image: erfianugrah/caddy-cfdns:v1.3.5-2.7.6
+  #   hostname: caddy
+  #   container_name: caddy
+  #   restart: unless-stopped
+  #   network_mode: host
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         cpus: '8'
+  #         memory: 1024M
+  #   volumes:
+  #     - ~/ollama-compose/caddy/Caddyfile:/etc/caddy/Caddyfile
+  #     - ~/ollama-compose/caddy/site:/srv
+  #     - ~/ollama-compose/caddy/data:/data
+  #     - ~/ollama-compose/caddy/config:/config
+  #     - ~/ollama-compose/caddy/log:/var/log
+
 networks:
   ollama:
     driver: bridge
