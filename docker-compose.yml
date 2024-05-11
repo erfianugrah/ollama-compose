@@ -22,7 +22,7 @@ services:
       - /mnt/user/data/llm/ollama:/root/.ollama
     networks:
       ollama:
-        ipv4_address: 172.28.0.2
+        ipv4_address: 172.19.8.2
 
   open-webui:
     image: ghcr.io/open-webui/open-webui
@@ -30,18 +30,19 @@ services:
     container_name: open_webui
     restart: unless-stopped
     environment:
-      - OLLAMA_BASE_URL=http://172.28.0.2:11434
+      - OLLAMA_BASE_URL=http://172.19.8.2:11434
     expose:
       - 8080
     volumes:
       - /mnt/user/data/llm/webui:/app/backend/data
     networks:
       ollama:
-        ipv4_address: 172.28.0.3
+        ipv4_address: 172.19.8.3
 
 networks:
   ollama:
     driver: bridge
     ipam:
       config:
-        - subnet: 172.28.0.0/17
+        - subnet: 172.19.8.0/24
+          gateway: 172.19.8.1
