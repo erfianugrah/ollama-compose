@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   ollama:
-    image: ollama/ollama:0.1.31
+    image: ollama/ollama:0.1.46
     hostname: ollama 
     container_name: ollama 
     restart: unless-stopped
@@ -21,7 +21,7 @@ services:
               count: all  
               capabilities: [gpu,video,compute,graphics,utility,compat32,display]
     volumes:
-      - ~/ollama-compose/ollama:/root/.ollama
+      - ~/docker-volumes/ollama:/root/.ollama
     networks:
       ollama:
         ipv4_address: 172.19.8.2
@@ -38,7 +38,7 @@ services:
     ports:
       - 3000:8080
     volumes:
-      - ~/ollama-compose/webui:/app/backend/data
+      - ~/docker-volumes/webui:/app/backend/data
     networks:
       ollama:
         ipv4_address: 172.19.8.3
